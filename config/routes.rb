@@ -1,4 +1,6 @@
 Wormsay::Application.routes.draw do
+  get "product/categorization"
+  post "product/browser_search"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
