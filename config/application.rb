@@ -2,6 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require File.join(File.dirname(File.dirname(__FILE__)), 'lib', 'categorizer.rb')
+require File.join(File.dirname(File.dirname(__FILE__)), 'lib', 'product_page_parser.rb')
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -62,5 +63,6 @@ module Wormsay
     CATEGORIZER = Categorizer.new
     CATEGORIZER.load(File.join(Rails.root, "categorizer_resource"))
     #puts CATEGORIZER
+    PAGE_PARSER = ProductPageParser.new
   end
 end

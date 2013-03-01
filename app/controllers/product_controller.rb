@@ -1,3 +1,4 @@
+require 'product_page_parser'
 class ProductController < ApplicationController
   def categorization
     categorizer = Wormsay::Application::CATEGORIZER
@@ -10,12 +11,13 @@ class ProductController < ApplicationController
   end
 
   def browser_search
-    body = params[:body]
+    parser = Wormsay::Application::PAGE_PARSER
+    #body = params[:body]
     #puts "body:#{body}"
-    pmatch = /em class=\"tb-rmb-num\">(.*)<\/em>/.match(body)
-    price = pmatch[1].to_f
-    attributes = ProductPageParser.parse(opt);
-    render :json => {:attributes => [{:key => 'price', :value => price}]}
+    #pmatch = /em class=\"tb-rmb-num\">(.*)<\/em>/.match(body)
+    #price = pmatch[1].to_f
+    attributes = parser.parse(params);
+    render :json => {:attributes => attributes}
   end
 
 private

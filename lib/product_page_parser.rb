@@ -6,14 +6,19 @@ class ProductPageParser
     end
     @parsers = []
     @parsers << TaobaoParser.new
+    @parsers << AmazoncnParser.new
   end
 
   def parse(opt)
     url = opt[:url]
+    body = opt[:body]
+    puts "url XX:  #{url}"
     parser = get_parser(url)
     return nil if parser.nil?
+    #puts "body type: #{body.class}"
+    #puts "body: #{body}"
 
-    parser.parse(opt[:body])
+    parser.parse(body)
   end
 
 private
@@ -24,5 +29,6 @@ private
         return parser
       end
     end
+    return nil
   end
 end
